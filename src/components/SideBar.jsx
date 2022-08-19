@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, VStack, Flex, Text, Image } from "@chakra-ui/react";
+import { VStack, Flex, Text, Image } from "@chakra-ui/react";
 import logo from "../assets/logo-kementan.png";
 import { FiHome } from "react-icons/fi";
 
