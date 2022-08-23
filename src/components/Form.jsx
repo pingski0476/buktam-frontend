@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Container,
   Box,
@@ -19,15 +19,25 @@ import Buktam from "../api/Buktam";
 import { useForm } from "react-hook-form";
 
 const Form = () => {
+  const [isSafeToReset, setIsSafeToReset] = useState(false);
+
   const {
     register,
+    reset,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
+  useEffect(() => {
+    if (isSafeToReset) {
+      reset();
+    }
+  }, [isSafeToReset]);
+
   const submitHandler = async (data) => {
     try {
       const postForm = await Buktam.post("/buktam/", data);
+      setIsSafeToReset(true);
     } catch (error) {
       console.log(error.message);
       console.log(error.response);
